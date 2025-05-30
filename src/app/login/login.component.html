@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="login-form">
+    <h2>Sistema de Denúncias</h2>
+
+    <!-- Formulário de Login -->
+    <!-- *ngIf: Diretiva para exibir ou não um elemento HTML baseado no valor de uma 
+    variável que está no arquivo TS -->
+    <div *ngIf="!showRegister" class="form-container">
+      <div class="form-group">
+        <label>Email:</label>
+
+        <!-- BINDING: conexão entre um input do usuário e uma variável -->
+        <!-- 
+            Two-way data binding: quando o usuário digita algo no input, a variável
+            loginData.email é atualizada automaticamente, e vice-versa.
+            [(ngModel)]: é uma diretiva do Angular que permite essa conexão bidirecional.
+        -->
+        <input
+          type="email"
+          [(ngModel)]="loginData.email"
+          placeholder="seu@email.com"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Senha:</label>
+        <input
+          type="password"
+          [(ngModel)]="loginData.password"
+          placeholder="••••••••"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Tipo de Usuário:</label>
+        <select [(ngModel)]="loginData.userType" class="form-input">
+          <option value="user">Usuário</option>
+          <option value="institution">Instituição</option>
+        </select>
+      </div>
+
+      <!-- (evento) = quando o evento for disparado, será executada uma função -->
+      <button (click)="onLogin()" class="btn btn-primary">Entrar</button>
+
+      <button (click)="toggleForm()" class="link-button">
+        Não tem conta? Cadastre-se
+      </button>
+    </div>
+
+    <!-- Formulário de Cadastro -->
+    <div *ngIf="showRegister" class="form-container">
+      <div class="form-group">
+        <label>Nome Completo:</label>
+        <input
+          type="text"
+          [(ngModel)]="registerData.name"
+          placeholder="Seu nome completo"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Email:</label>
+        <input
+          type="email"
+          [(ngModel)]="registerData.email"
+          placeholder="seu@email.com"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Senha:</label>
+        <input
+          type="password"
+          [(ngModel)]="registerData.password"
+          placeholder="••••••••"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Confirmar Senha:</label>
+        <input
+          type="password"
+          [(ngModel)]="registerData.confirmPassword"
+          placeholder="••••••••"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Tipo de Usuário:</label>
+        <select [(ngModel)]="registerData.userType" class="form-input">
+          <option value="user">Usuário</option>
+          <option value="institution">Instituição</option>
+        </select>
+      </div>
+
+      <button (click)="onRegister()" class="btn btn-primary">Cadastrar</button>
+
+      <button (click)="toggleForm()" class="link-button">
+        Já tem conta? Fazer login
+      </button>
+    </div>
+
+    <!-- Mensagem de sucesso/erro -->
+    <div
+      *ngIf="message"
+      class="message"
+      [class.success]="isSuccess"
+      [class.error]="!isSuccess"
+    >
+      {{ message }}
+    </div>
+  </div>
+</div>
