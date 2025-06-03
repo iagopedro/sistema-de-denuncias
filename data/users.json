@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "name": "Alice Silva",
+        "email": "alice.silva@example.com",
+        "password": "senha123",
+        "userType": "user"
+    },
+    {
+        "id": 2,
+        "name": "Bruno Costa",
+        "email": "bruno.costa@example.com",
+        "password": "senha456",
+        "userType": "user"
+    },
+    {
+        "id": 3,
+        "name": "Carla Souza",
+        "email": "carla.souza@example.com",
+        "password": "senha789",
+        "userType": "admin"
+    },
+    {
+        "id": 4,
+        "name": "Daniel Pereira",
+        "email": "daniel.pereira@example.com",
+        "password": "senha321",
+        "userType": "user"
+    },
+    {
+        "id": 5,
+        "name": "Elaine Rocha",
+        "email": "elaine.rocha@example.com",
+        "password": "senha654",
+        "userType": "user"
+    },
+    {
+        "id": 6,
+        "name": "Fernando Lima",
+        "email": "fernando.lima@example.com",
+        "password": "senha987",
+        "userType": "user"
+    },
+    {
+        "id": 7,
+        "name": "Gabriela Alves",
+        "email": "gabriela.alves@example.com",
+        "password": "senha147",
+        "userType": "admin"
+    },
+    {
+        "id": 8,
+        "name": "Henrique Martins",
+        "email": "henrique.martins@example.com",
+        "password": "senha258",
+        "userType": "user"
+    },
+    {
+        "id": 9,
+        "name": "Isabela Dias",
+        "email": "isabela.dias@example.com",
+        "password": "senha369",
+        "userType": "user"
+    },
+    {
+        "id": 10,
+        "name": "Julio Fernandes",
+        "email": "julio.fernandes@example.com",
+        "password": "senha159",
+        "userType": "user"
+    }
+]

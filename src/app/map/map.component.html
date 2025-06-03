@@ -1,0 +1,141 @@
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">🗺️ Mapa de Denúncias</div>
+    <div class="user-info">
+      <span>Usuário: {{ userName }}</span>
+      <button class="btn btn-secondary" (click)="logout()">Sair</button>
+    </div>
+  </div>
+
+  <!-- Instruções -->
+  <div class="map-instructions">
+    <strong>📍 Clique no mapa para registrar uma nova denúncia</strong>
+  </div>
+
+  <!-- Container do Mapa -->
+  <div class="map-container">
+    <div class="map" #mapElement (click)="onMapClick($event)">
+      <!-- Marcadores das denúncias -->
+      <div
+        *ngFor="let complaint of complaints"
+        class="map-marker"
+        [style.top.%]="complaint.lat"
+        [style.left.%]="complaint.lng"
+        (click)="showComplaintDetails($event, complaint)"
+        [title]="complaint.title"
+      ></div>
+    </div>
+  </div>
+</div>
+
+<!-- Popup para nova denúncia -->
+<div
+  class="popup-overlay"
+  [class.show]="showNewComplaintPopup"
+  (click)="closePopupIfOutside($event)"
+>
+  <div class="popup">
+    <button class="close-btn" (click)="closeNewComplaintPopup()">
+      &times;
+    </button>
+    <h3>Nova Denúncia</h3>
+    <form (ngSubmit)="submitComplaint()" #complaintForm="ngForm">
+      <div class="form-group">
+        <label>Tipo de Denúncia:</label>
+        <select [(ngModel)]="newComplaint.type" name="type" required>
+          <option value="">Selecione...</option>
+          <option value="infraestrutura">Infraestrutura</option>
+          <option value="limpeza">Limpeza Urbana</option>
+          <option value="iluminacao">Iluminação Pública</option>
+          <option value="transito">Trânsito</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Título:</label>
+        <input
+          type="text"
+          [(ngModel)]="newComplaint.title"
+          name="title"
+          placeholder="Título da denúncia"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Descrição:</label>
+        <textarea
+          [(ngModel)]="newComplaint.description"
+          name="description"
+          rows="4"
+          placeholder="Descreva o problema detalhadamente..."
+          required
+        >
+        </textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Urgência:</label>
+        <select [(ngModel)]="newComplaint.urgency" name="urgency">
+          <option value="baixa">Baixa</option>
+          <option value="media">Média</option>
+          <option value="alta">Alta</option>
+        </select>
+      </div>
+
+      <div class="form-buttons">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!complaintForm.valid"
+        >
+          Registrar Denúncia
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="closeNewComplaintPopup()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Popup para detalhes da denúncia -->
+<div
+  class="popup-overlay"
+  [class.show]="showDetailsPopup"
+  (click)="closePopupIfOutside($event)"
+>
+  <div class="popup">
+    <button class="close-btn" (click)="closeDetailsPopup()">&times;</button>
+    <h3>{{ selectedComplaint?.title }}</h3>
+    <div *ngIf="selectedComplaint" class="complaint-details">
+      <p>
+        <strong>Tipo:</strong>
+        {{ getComplaintTypeLabel(selectedComplaint.type) }}
+      </p>
+      <p><strong>Data:</strong> {{ selectedComplaint.date }}</p>
+      <p>
+        <strong>Status:</strong>
+        <span
+          [class]="
+            'status-badge status-' +
+            selectedComplaint.status.toLowerCase().replace(' ', '')
+          "
+        >
+          {{ selectedComplaint.status }}
+        </span>
+      </p>
+      <p><strong>Urgência:</strong> {{ selectedComplaint.urgency }}</p>
+      <p><strong>Descrição:</strong></p>
+      <div class="description-box">
+        {{ selectedComplaint.description }}
+      </div>
+    </div>
+  </div>
+</div>

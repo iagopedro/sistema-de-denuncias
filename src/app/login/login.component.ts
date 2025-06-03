@@ -53,6 +53,7 @@ export class LoginComponent {
     }
 
     // Simula login bem-sucedido
+    // TODO: Usar Service para autenticação
     this.showMessage(`Login realizado com sucesso! Tipo: ${this.loginData.userType}`, true);
     
     // Aqui você normalmente faria uma chamada para um serviço de autenticação
@@ -75,6 +76,7 @@ export class LoginComponent {
     }
 
     // Simula cadastro bem-sucedido
+    // TODO: Usar Service para cadastro de usuário
     this.showMessage('Cadastro realizado com sucesso!', true);
     
     // Volta para a tela de login após 2 segundos
@@ -96,7 +98,7 @@ export class LoginComponent {
     // Remove a mensagem após 5 segundos
     setTimeout(() => {
       this.message = '';
-    }, 10000);
+    }, 5000);
   }
 
   // Limpa os formulários
