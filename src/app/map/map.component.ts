@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from '../shared/user.service';
+import Swal from 'sweetalert2';
 
 interface Complaint {
   id: string;
@@ -22,8 +25,15 @@ interface Complaint {
   styleUrl: './map.component.css',
 })
 export class MapComponent {
+
+  constructor(private router: Router) {
+    if (!localStorage.getItem('usuarioLogado')) {
+      alert("Usuário não logado");
+      this.router.navigate(['/login']);
+    }    
+  }
   // Propriedades do componente
-  userName = 'João Silva';
+  user: User = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
 
   // Controle dos popups
   showNewComplaintPopup = false;
@@ -171,9 +181,17 @@ export class MapComponent {
 
   // Método para logout
   logout() {
-    if (confirm('Deseja realmente sair?')) {
-      // Aqui você implementaria a lógica de logout
-      console.log('Logout realizado');
-    }
+    Swal.fire({
+      title: 'Logout',
+      text: 'Você tem certeza que deseja sair?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, sair',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('usuarioLogado');
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }
