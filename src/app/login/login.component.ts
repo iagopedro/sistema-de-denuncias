@@ -111,10 +111,9 @@ export class LoginComponent {
           this.message = '';
           this.resetForms();
         }, 2000);
-        return;
-      } 
-
-      this.showMessage('Email já está em uso!', false);
+      } else {
+        this.showMessage('Email já está em uso!', false);        
+      }
     });
   }
 
