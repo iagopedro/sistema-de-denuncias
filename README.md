@@ -1,59 +1,61 @@
-# sistema-de-denuncias
+# Sistema de Denúncias
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
+Este projeto é uma aplicação web desenvolvida em Angular que permite aos usuários registrar denúncias por meio de um mapa interativo. Nele, os usuários podem:
 
-## Development server
+- Fazer login e cadastro.
+- Visualizar denúncias através de marcadores num mapa.
+- Registrar novas denúncias clicando em pontos específicos do mapa.
+- Exibir detalhes das denúncias ao clicar nos marcadores.
 
-To start a local development server, run:
+## Funcionalidades
 
-```bash
-ng serve
-```
+- **Autenticação**: Login e cadastro de usuários.
+- **Mapa Interativo**: Implementado com [Leaflet](https://leafletjs.com/), possibilitando a navegação e o registro de denúncias.
+- **Registro de Denúncias**: Ao clicar (com o botão esquerdo) em um ponto do mapa, o usuário pode abrir um popup para registrar uma nova denúncia.
+- **Detecção de Detalhes**: Clicando nos marcadores já existentes, o usuário pode visualizar informações detalhadas sobre cada denúncia.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Pré-requisitos
 
-## Code scaffolding
+- [Node.js](https://nodejs.org/)
+- [Angular CLI](https://angular.io/cli)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Instalação e Desenvolvimento
 
-```bash
-ng generate component component-name
-```
+1. **Instalar dependências:**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+   ```bash
+   npm install
+   ```
 
-```bash
-ng generate --help
-```
+2. **Iniciar o servidor de desenvolvimento:**
 
-## Building
+   ```bash
+   ng serve
+   ```
 
-To build the project run:
+   Acesse `http://localhost:4200/` no seu navegador. O aplicativo recarrega automaticamente ao salvar alterações nos arquivos.
 
-```bash
-ng build
-```
+## Estrutura do Projeto
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- **/src/app/login**: Componentes e serviços para autenticação (login/cadastro).
+- **/src/app/map**: Componentes responsáveis pela visualização e interação com o mapa usando Leaflet.
+- **/src/app/shared**: Serviços compartilhados, como o `UserService` para gerenciamento de usuários.
 
-## Running unit tests
+## Personalizações do Projeto
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Interatividade com o Mapa**:  
+  O mapa foi configurado para que o registro de denúncias ocorra por meio de cliques (botão esquerdo) e a navegação com o botão do meio (clique e arraste).
+  
+- **Marcação de Denúncias**:  
+  As denúncias são representadas por marcadores permanentes. Ao clicar em um ponto do mapa, é exibido um popup de nova denúcia, que gera um marcador após o registro. Ao clicar no marcador, um popup de detalhes é exibido.
 
-```bash
-ng test
-```
+## Recursos Adicionais
 
-## Running end-to-end tests
+- [Documentação Angular CLI](https://angular.io/cli)
+- [Documentação Leaflet](https://leafletjs.com/)
 
-For end-to-end (e2e) testing, run:
+OBS.: Sobre os detalhes da implementação do Leaflet, veja esse link: https://iagopedro.notion.site/Implementa-o-do-Leaflet-20ebed0303bd80bcb3edc61fd76ddea5?source=copy_link
 
-```bash
-ng e2e
-```
+## Licença
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este projeto está licenciado sob a [MIT License](LICENSE).

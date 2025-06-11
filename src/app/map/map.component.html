@@ -3,7 +3,7 @@
   <div class="header">
     <div class="logo">🗺️ Mapa de Denúncias</div>
     <div class="user-info">
-      <span>Usuário: {{ user.name }}</span> 
+      <span>Usuário: {{ user.name }}</span>
       <button class="btn btn-secondary" (click)="logout()">Sair</button>
     </div>
   </div>
@@ -13,18 +13,13 @@
     <strong>📍 Clique no mapa para registrar uma nova denúncia</strong>
   </div>
 
-  <!-- Container do Mapa -->
   <div class="map-container">
-    <div class="map" #mapElement (click)="onMapClick($event)">
-      <!-- Marcadores das denúncias -->
-      <div
-        *ngFor="let complaint of complaints"
-        class="map-marker"
-        [style.top.%]="complaint.lat"
-        [style.left.%]="complaint.lng"
-        (click)="showComplaintDetails($event, complaint)"
-        [title]="complaint.title"
-      ></div>
+    <div #mapContainer id="leaflet-map" class="map" (click)="onMapClick($event)"></div>
+    <div class="map-controls">
+      <button (click)="zoomIn()">Zoom +</button>
+      <button (click)="zoomOut()">Zoom -</button>
+      <button (click)="centerMap()">Centralizar</button>
+      <button (click)="clearMarkers()">Limpar Marcadores</button>
     </div>
   </div>
 </div>
